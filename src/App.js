@@ -1,26 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
-import { INCREMENT, DECREMENT, addAsync } from "./index.redux";
-import logo from "./logo.svg";
+import { INCREMENT, DECREMENT, addAsync } from "./reducers/counter";
 import "./App.css";
 
+@connect(
+  state => ({ counter: state.counter }),
+  { INCREMENT, DECREMENT, addAsync }
+)
 class App extends React.Component {
   render() {
-    const num = this.props.num;
+    const counter = this.props.counter;
     return (
       <div>
-        <h1>现在有机枪{num}</h1>
+        <h1>现在有机枪{counter}</h1>
         <button onClick={this.props.INCREMENT}>增加</button>
       </div>
     );
   }
 }
-const mapStateToProps = state => {
-  return { num: state };
-};
-const actionsState = { INCREMENT, DECREMENT, addAsync };
-App = connect(
-  mapStateToProps,
-  actionsState
-)(App);
+
 export default App;
