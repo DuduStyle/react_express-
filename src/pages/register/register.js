@@ -16,19 +16,24 @@ class Register extends Component {
     super(props);
     // this.register = this.register.bind(this);
   }
-  register = () => {
+  submit = () => {
     console.log(this.props);
-    this.props.form.getFieldValue((err, value) => {
+    this.props.form.validateFields((err, value) => {
       console.log(value);
+      this.props.register({ ...value, type: "1" });
     });
   };
   render() {
     const { getFieldProps } = this.props.form;
+    console.log("222222222222222222222", this.props);
+    const { isAuth, msg } = this.props;
     return (
       <div>
         <List>
+          {!isAuth && <div>{msg}</div>}
+
           <InputItem
-            {...getFieldProps("name")}
+            {...getFieldProps("user")}
             clear
             placeholder="auto focus"
             ref={el => (this.autoFocusInst = el)}
@@ -37,7 +42,7 @@ class Register extends Component {
           </InputItem>
           <WhiteSpace size="md" />
           <InputItem
-            {...getFieldProps("password")}
+            {...getFieldProps("pwd")}
             clear
             placeholder="auto focus"
             ref={el => (this.autoFocusInst = el)}
@@ -46,7 +51,7 @@ class Register extends Component {
           </InputItem>
           <WhiteSpace size="md" />
           <InputItem
-            {...getFieldProps("repassword")}
+            {...getFieldProps("repeatpwd")}
             clear
             placeholder="auto focus"
             ref={el => (this.autoFocusInst = el)}
@@ -56,7 +61,7 @@ class Register extends Component {
         </List>
         <Button
           onClick={() => {
-            this.register();
+            this.submit();
           }}
         >
           注册
