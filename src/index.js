@@ -12,12 +12,12 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import Auth from "./pages/auth";
-import Dashbord from "./pages/dashbord";
+import BossInfo from "./pages/bossInfo/index";
 import Login from "./pages/login/login";
 import Register from "./pages/register/register";
 import reducers from "./reducers/index.js";
 import AuthRouter from "./component/AuthRouter/AuthRouter";
-import "antd-mobile/dist/antd-mobile.css";
+// import "antd-mobile/dist/antd-mobile.css";
 const store = createStore(
   reducers,
   compose(
@@ -33,7 +33,7 @@ ReactDOM.render(
     <Router>
       <div>
         <AuthRouter />
-        <Route path="/boss" component={Boss} />
+        <Route path="/bossinfo" component={BossInfo} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
       </div>
